@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const { application } = require("express");
+const multer = require("./middleware/multer-config")
+const path = require('path');
 // Importation Routes
 const userRoute = require("./routes/users");
 const sauceRoute = require("./routes/sauces");
@@ -35,6 +37,6 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/auth", userRoute);
 app.use("/api/sauces", sauceRoute);
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 // Fin routes
 module.exports = app;
